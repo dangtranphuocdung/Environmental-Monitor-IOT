@@ -52,13 +52,13 @@ void onConnection(){
 
 void setup() {
   Serial.begin(9600);
-  dht.init();
-  lcd.start();
-  firebaseconfig.login();
+  wifiConnect.connect(WIFI_SSID, PASSWORD); //Connect wifi
+  firebaseconfig.login(); //Connect firebase
   firebaseconfig.begin();
-  wifiConnect.connect(WIFI_SSID, PASSWORD);
+  dht.init(); //Connect hardware
+  lcd.start();
   led1.start(ledPin);
-  mqttClient.setOnConnect(onConnection);
+  mqttClient.setOnConnect(onConnection);//Connect mqtt
   mqttClient.setOnMessage(onMessage);
   mqttClient.begin(&mqtt_server[0], 1883);
 }
