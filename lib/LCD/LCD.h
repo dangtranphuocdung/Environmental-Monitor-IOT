@@ -12,6 +12,7 @@ class LcdDisplay{
         LcdDisplay(uint8_t address, uint8_t characters, uint8_t column);
         void start();
         void display(float temp, float humid);
+        void isDataValid(float temp, float humd);
 };
 
 

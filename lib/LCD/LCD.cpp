@@ -16,3 +16,13 @@ void LcdDisplay::display(float temp, float humid){
     _lcd.setCursor(0,1); //Set cursor tại character 2, line 2
     _lcd.print("Humidity is " + String(humid));
 };
+
+void LcdDisplay::isDataValid(float temp, float humid){
+    if (isnan(temp) || isnan(humid)) {
+        Serial.println("False to read data from sensor");
+        _lcd.clear();
+        _lcd.setCursor(0,0);
+        _lcd.print("Sensor Error");
+        return;
+    }
+};

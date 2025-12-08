@@ -1,11 +1,12 @@
 #include "FirebaseClient.h"
 #include "DHT11.h"
+//Setting firebase, config API
 FirebaseSetting::FirebaseSetting(String apiKey, String databaseURL){
     config.api_key = apiKey;
     config.database_url = databaseURL;
     signUp = false;
 }
-
+//Login firebase
 void FirebaseSetting::login(){ //log in anonymous
     if (Firebase.signUp(&config, &auth, "", "")) { 
         Serial.println("Sign in sucessfull");
@@ -15,11 +16,11 @@ void FirebaseSetting::login(){ //log in anonymous
         Serial.printf("%s\n", config.signer.signupError.message.c_str());
     }
 }
-
+//Start firebase
 void FirebaseSetting::begin(){
     Firebase.begin(&config, &auth);
 }
-
+//Send data to firebase
 void FirebaseSetting::sendDataToFBS(float temp, float humid){
     if (Firebase.ready() && signUp) {
         //Send temperature to firebase

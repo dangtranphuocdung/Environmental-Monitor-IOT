@@ -10,12 +10,12 @@ DHTSensor::DHTSensor(int pin, int type): _dht(pin,type){
 void DHTSensor::init(){
     _dht.begin();
 }
-
+//Read temperature and return a float value
 float DHTSensor::readTemp(){
     float temp = _dht.readTemperature();
     return temp;
 }
-
+//Read humidity and return a float value
 float DHTSensor::readHumid(){
     float humid = _dht.readHumidity();
     return humid;
