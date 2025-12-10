@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng điều khiển</title>
+    
+    <meta http-equiv="refresh" content="10">
+    
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        h1 { color: #333; }
+        h2 { color: #555; }
+        .data-container { background-color: #f4f4f4; padding: 20px; border-radius: 8px; display: inline-block; }
+        .controls-container { margin-top: 30px; }
+        button {
+            font-size: 24px; padding: 15px 30px; margin: 10px;
+            border: none; border-radius: 5px; color: white; cursor: pointer;
+        }
+        .btn-on { background-color: #28a745; }
+        .btn-off { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <h1>Controller</h1>
+
+    <div class="data-container">
+        <h2>Temperature: {{ data.temperature }} &deg;C</h2>
+        <h2>Humidity: {{ data.humidity }} %</h2>
+    </div>
+
+    <div class="controls-container">
+        <a href="/control?cmd=ON">
+            <button class="btn-on">TURN ON LED</button>
+        </a>
+
+        <a href="/control?cmd=OFF">
+            <button class="btn-off">TURN OFF LED</button>
+        </a>
+    </div>
+
+</body>
+</html>
