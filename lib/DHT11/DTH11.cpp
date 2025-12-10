@@ -1,6 +1,6 @@
 #include "DHT11.h"
 
-//Constructor
+//Constructor: initialize the pin and call object
 DHTSensor::DHTSensor(int pin, int type): _dht(pin,type){
     _DHTpin = pin;
     _DHTtype = type;

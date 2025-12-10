@@ -8,6 +8,7 @@
 #include "LED.h"
 #include "MQTTClient.h"
 
+//Set variables
 const int pin = 27;
 const int ledPin = 18;
 float temp;
@@ -18,7 +19,7 @@ unsigned long timeInterval = 10000;
 const char* mqtt_server = "broker.hivemq.com";
 const char* mqtt_topic_command = "house/livingroom/led/set";
 
-
+//Call objects and config API, Database.
 
 DHTSensor dht(pin, DHT11);
 LcdDisplay lcd(0x27, 16, 2);
@@ -27,7 +28,7 @@ Wifi wifiConnect;
 LedClass led1(ledPin, 0, 5000, 8);
 MqttClass mqttClient;
 
-//Callback:
+//Callback: process messsages from broker and responde
 void onMessage(String topic, String message) {
   Serial.print("Message from topic: ");
   Serial.print(topic);
@@ -41,7 +42,7 @@ void onMessage(String topic, String message) {
     led1.controlLed(0);
   }
 };
-
+//Callback: Subscribe to topic after sucessfully set up client and wait for message from that
 void onConnection(){
   Serial.println("Connected to MQTT");
   mqttClient.subscribe(&mqtt_topic_command[0]);
@@ -58,7 +59,7 @@ void setup() {
   dht.init(); //Connect hardware
   lcd.start();
   led1.start(ledPin);
-  mqttClient.setOnConnect(onConnection);//Connect mqtt
+  mqttClient.setOnConnect(onConnection);//Subscribe to 
   mqttClient.setOnMessage(onMessage);
   mqttClient.begin(&mqtt_server[0], 1883);
 }

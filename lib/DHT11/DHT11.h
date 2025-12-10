@@ -12,7 +12,7 @@ class DHTSensor {
         DHT _dht;
 
     public:
-        DHTSensor(int pin, int type);
+        DHTSensor(int pin, int type); //Call sensor, initialize pin, type
         void init();
         float readTemp();
         float readHumid();
